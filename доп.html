@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт-визитка Александра</title>
+    <style>
+        /* Базовые настройки и темный премиальный фон */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0d0f14; /* Глубокий темный фон */
+            color: #f1f3f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Декоративный светящийся круг на фоне для красоты */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 10%;
+            right: 15%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Главный контейнер секции */
+        .hero {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            max-width: 1100px;
+            width: 90%;
+            gap: 60px;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        /* Левая колонка с текстом */
+        .hero-info {
+            flex: 1.2;
+        }
+
+        /* Главный заголовок с розовым акцентом */
+        .hero-info h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            letter-spacing: -0.5px;
+        }
+
+        /* Имя выделено ярко-розовым цветом */
+        .hero-info h1 span {
+            color: #ff6b9d; 
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Подзаголовок нежно-розового оттенка */
+        .hero-info h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fca5a5;
+            margin: 0 0 20px 0;
+        }
+
+        /* Описание */
+        .hero-info p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #adb5bd; /* Приглушенный серый для легкого чтения */
+            margin: 0 0 35px 0;
+        }
+
+        /* Интерактивная розовая кнопка CTA */
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff4785 100%);
+            color: #ffffff;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-radius: 30px; /* Округлый современный стиль */
+            box-shadow: 0 8px 20px rgba(255, 71, 133, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Эффект при наведении на кнопку */
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(255, 71, 133, 0.5);
+            background: linear-gradient(135deg, #ff85af 0%, #ff5c93 100%);
+        }
+
+        /* Правая колонка с картинкой */
+        .hero-img {
+            flex: 0.8;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Стильная обертка для картинки с эффектом свечения */
+        .img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed rgba(255, 107, 157, 0.2);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: block;
+        }
+
+        /* Адаптивность для мобильных экранов */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+                padding: 60px 0;
+            }
+            .hero-info h1 {
+                font-size: 2.3rem;
+            }
+            .hero-info h2 {
+                font-size: 1.3rem;
+            }
+            .hero-img {
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <!-- Блок с текстом -->
+        <div class="hero-info">
+            <h1>Привет! Я <span>Александра</span> — веб-разработчик</h1>
+            <h2>Создаю современные веб-приложения</h2>
+            <p>Специализируюсь на верстке и программировании интерфейсов. Имею опыт создания адаптивных сайтов, которые одинаково быстро работают на смартфонах и компьютерах.</p>
+            <a href="https://t.me/olexsiis" target="_blank" class="cta-btn">Связаться со мной</a>
+        </div>
+        
+        <!-- Блок с изображением -->
+        <div class="hero-img">
+            <div class="img-wrapper">
+                <!-- Качественная рабочая ссылка на тематическое изображение -->
+                <img src="workplace.jpg" alt="Рабочее пространство веб-разработчика">
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
