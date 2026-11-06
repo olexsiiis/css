@@ -1,180 +1,537 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт-визитка Александра</title>
-    <style>
-        /* Базовые настройки и темный премиальный фон */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0d0f14; /* Глубокий темный фон */
-            color: #f1f3f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александра | Web Developer</title>
 
-        /* Декоративный светящийся круг на фоне для красоты */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.15) 0%, rgba(0,0,0,0) 70%);
-            top: 10%;
-            right: 15%;
-            z-index: 0;
-            pointer-events: none;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Главный контейнер секции */
-        .hero {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            max-width: 1100px;
-            width: 90%;
-            gap: 60px;
-            align-items: center;
-            padding: 40px 0;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Левая колонка с текстом */
-        .hero-info {
-            flex: 1.2;
-        }
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #090a10;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-        /* Главный заголовок с розовым акцентом */
-        .hero-info h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1.2;
-            color: #ffffff;
-            margin: 0 0 15px 0;
-            letter-spacing: -0.5px;
-        }
+/* Фоновое свечение */
 
-        /* Имя выделено ярко-розовым цветом */
-        .hero-info h1 span {
-            color: #ff6b9d; 
-            text-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
-        }
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #ff398d;
+    filter: blur(180px);
+    opacity: .12;
+    top: -150px;
+    right: -100px;
+    pointer-events: none;
+}
 
-        /* Подзаголовок нежно-розового оттенка */
-        .hero-info h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #fca5a5;
-            margin: 0 0 20px 0;
-        }
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: #8d267b;
+    filter: blur(170px);
+    opacity: .12;
+    bottom: -150px;
+    left: -100px;
+    pointer-events: none;
+}
 
-        /* Описание */
-        .hero-info p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #adb5bd; /* Приглушенный серый для легкого чтения */
-            margin: 0 0 35px 0;
-        }
+/* Навигация */
 
-        /* Интерактивная розовая кнопка CTA */
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b9d 0%, #ff4785 100%);
-            color: #ffffff;
-            padding: 14px 32px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.05rem;
-            border-radius: 30px; /* Округлый современный стиль */
-            box-shadow: 0 8px 20px rgba(255, 71, 133, 0.3);
-            transition: all 0.3s ease;
-        }
+header {
+    max-width: 1250px;
+    margin: auto;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
 
-        /* Эффект при наведении на кнопку */
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(255, 71, 133, 0.5);
-            background: linear-gradient(135deg, #ff85af 0%, #ff5c93 100%);
-        }
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff4b9b;
+    text-shadow: 0 0 20px #ff4b9b;
+}
 
-        /* Правая колонка с картинкой */
-        .hero-img {
-            flex: 0.8;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.logo span {
+    color: white;
+}
 
-        /* Стильная обертка для картинки с эффектом свечения */
-        .img-wrapper {
-            position: relative;
-            display: inline-block;
-        }
+nav {
+    display: flex;
+    gap: 35px;
+}
 
-        .img-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px dashed rgba(255, 107, 157, 0.2);
-            border-radius: 24px;
-            pointer-events: none;
-        }
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+    transition: .3s;
+}
 
-        .hero-img img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: block;
-        }
+nav a:hover {
+    color: #ff4b9b;
+    text-shadow: 0 0 12px #ff4b9b;
+}
 
-        /* Адаптивность для мобильных экранов */
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 40px;
-                padding: 60px 0;
-            }
-            .hero-info h1 {
-                font-size: 2.3rem;
-            }
-            .hero-info h2 {
-                font-size: 1.3rem;
-            }
-            .hero-img {
-                width: 70%;
-            }
-        }
-    </style>
+.socials {
+    display: flex;
+    gap: 12px;
+}
+
+.socials a {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #555;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.socials a:hover {
+    border-color: #ff4b9b;
+    color: #ff4b9b;
+    transform: translateY(-4px);
+}
+
+/* Главный экран */
+
+.hero {
+    max-width: 1250px;
+    min-height: 680px;
+    margin: auto;
+    padding: 70px 30px;
+    display: flex;
+    align-items: center;
+    gap: 65px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-info {
+    flex: 1.1;
+    animation: fadeUp 1s ease;
+}
+
+.tag {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: rgba(255, 75, 155, .1);
+    border: 1px solid rgba(255, 75, 155, .4);
+    color: #ff80b5;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.tag::before {
+    content: "●";
+    margin-right: 10px;
+    color: #ff4b9b;
+}
+
+h1 {
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.12;
+    font-weight: 850;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: #ff4b9b;
+    text-shadow: 0 0 30px rgba(255, 75, 155, .4);
+}
+
+.hero h2 {
+    font-size: 25px;
+    color: #ff9bc4;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    color: #aeb0bc;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 570px;
+    margin-bottom: 35px;
+}
+
+/* Кнопки */
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 17px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff70ae, #ff2582);
+    color: white;
+    box-shadow: 0 0 30px rgba(255, 50, 140, .35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(255, 50, 140, .6);
+}
+
+.btn-secondary {
+    color: white;
+    border: 1px solid #555;
+}
+
+.btn-secondary:hover {
+    color: #ff70ae;
+    border-color: #ff70ae;
+}
+
+/* Изображение */
+
+.hero-img {
+    flex: .9;
+    animation: fadeIn 1.5s ease;
+}
+
+.img-wrapper {
+    position: relative;
+    padding: 9px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff4b9b, #541d65, #ff4b9b);
+    box-shadow: 0 0 45px rgba(255, 75, 155, .2);
+    transform: rotate(2deg);
+    transition: .4s;
+}
+
+.img-wrapper:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 0 0 60px rgba(255, 75, 155, .4);
+}
+
+.img-wrapper img {
+    width: 100%;
+    display: block;
+    border-radius: 23px;
+    min-height: 350px;
+    object-fit: cover;
+}
+
+/* Карточки преимуществ */
+
+.features {
+    max-width: 1190px;
+    margin: 0 auto 70px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,75,155,.2);
+    border-radius: 25px;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(15px);
+}
+
+.feature {
+    padding: 18px;
+    border-right: 1px solid rgba(255,255,255,.15);
+    transition: .3s;
+}
+
+.feature:last-child {
+    border-right: none;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 30px;
+    color: #ff4b9b;
+    margin-bottom: 12px;
+}
+
+.feature h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #a9a9b5;
+}
+
+/* Анимации */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Адаптация под планшеты и телефоны */
+
+@media (max-width: 950px) {
+
+    header {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 35px;
+        gap: 45px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .hero-img {
+        width: 80%;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 20px 50px;
+    }
+
+    .feature:nth-child(2) {
+        border-right: none;
+    }
+}
+
+@media (max-width: 550px) {
+
+    header {
+        justify-content: center;
+    }
+
+    .socials {
+        display: none;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 39px;
+    }
+
+    .hero h2 {
+        font-size: 21px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-img {
+        width: 95%;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .feature:last-child {
+        border-bottom: none;
+    }
+}
+
+</style>
 </head>
+
 <body>
-    <section class="hero">
-        <!-- Блок с текстом -->
-        <div class="hero-info">
-            <h1>Привет! Я <span>Александра</span> — веб-разработчик</h1>
-            <h2>Создаю современные веб-приложения</h2>
-            <p>Специализируюсь на верстке и программировании интерфейсов. Имею опыт создания адаптивных сайтов, которые одинаково быстро работают на смартфонах и компьютерах.</p>
-            <a href="https://t.me/olexsiis" target="_blank" class="cta-btn">Связаться со мной</a>
+
+<!-- Шапка -->
+
+<header>
+
+    <div class="logo">&lt;/&gt; <span>Александра</span></div>
+
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#about">Обо мне</a>
+        <a href="#skills">Навыки</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="socials">
+        <a href="https://t.me/olexsiis" target="_blank">✈</a>
+        <a href="https://github.com/" target="_blank">◉</a>
+        <a href="https://linkedin.com/" target="_blank">in</a>
+    </div>
+
+</header>
+
+<!-- Главный экран -->
+
+<section class="hero" id="home">
+
+    <div class="hero-info">
+
+        <div class="tag">Веб-разработчик</div>
+
+        <h1>
+            Привет! Я<br>
+            <span>Александра</span> —<br>
+            веб-разработчик
+        </h1>
+
+        <h2>Создаю современные веб-приложения 🚀</h2>
+
+        <p>
+            Специализируюсь на верстке и программировании
+            интерфейсов. Создаю красивые, современные
+            и адаптивные сайты, которые одинаково хорошо
+            работают на смартфонах и компьютерах.
+        </p>
+
+        <div class="buttons" id="contacts">
+
+            <a href="https://t.me/olexsiis"
+               target="_blank"
+               class="btn btn-primary">
+               ✈ Связаться со мной →
+            </a>
+
+            <a href="#skills" class="btn btn-secondary">
+                ↓ Узнать больше
+            </a>
+
         </div>
-        
-        <!-- Блок с изображением -->
-        <div class="hero-img">
-            <div class="img-wrapper">
-                <!-- Качественная рабочая ссылка на тематическое изображение -->
-                <img src="workplace.jpg" alt="Рабочее пространство веб-разработчика">
-            </div>
+
+    </div>
+
+    <!-- Фотография рабочего места -->
+
+    <div class="hero-img" id="about">
+
+        <div class="img-wrapper">
+
+            <img
+                src="workplace.jpg"
+                alt="Рабочее место веб-разработчика"
+            >
+
         </div>
-    </section>
+
+    </div>
+
+</section>
+
+<!-- Преимущества -->
+
+<section class="features" id="skills">
+
+    <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Быстрая работа</h3>
+        <p>Соблюдаю сроки и уделяю внимание качеству.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">▣</div>
+        <h3>Адаптивный дизайн</h3>
+        <p>Идеальный вид на любых устройствах.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">◇</div>
+        <h3>Современные технологии</h3>
+        <p>HTML, CSS, JavaScript, React и другие.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">♡</div>
+        <h3>Индивидуальный подход</h3>
+        <p>Учитываю ваши цели и пожелания.</p>
+    </div>
+
+</section>
+
 </body>
 </html>
+
 
